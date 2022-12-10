@@ -11,7 +11,7 @@ FetchContent_Populate(pybind11)
 message(STATUS "pybind11 is available in " ${pybind11_SOURCE_DIR})
 
 find_package(Python COMPONENTS Interpreter Development)
-add_subdirectory(${pybind11_SOURCE_DIR})
+add_subdirectory(${pybind11_SOURCE_DIR} ${pybind11_BINARY_DIR})
 
 # Python method:
 pybind11_add_module(_quine_mccluskey_tomas789 src_cpp/qmc.cpp)
