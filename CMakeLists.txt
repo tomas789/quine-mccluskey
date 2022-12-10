@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.23)
 project(qmc)
 
 find_package(Python COMPONENTS Interpreter Development)
-find_package(pybind11 CONFIG)
+
+add_subdirectory(pybind11)
 
 # Python method:
 pybind11_add_module(_qmc src/qmc.cpp)
