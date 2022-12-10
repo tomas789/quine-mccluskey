@@ -1,7 +1,6 @@
 import random
 import time
-from typing import List, Optional, Set, Tuple
-from rich.progress import track
+from typing import Optional, Set
 import boolean
 import sys
 from rich.progress import Progress, SpinnerColumn, TextColumn, TimeElapsedColumn
@@ -120,7 +119,7 @@ def check_qmc(n_bits: int, ones_formula, dontcare_formula):
     dontcare_formula_simplified = dontcare_formula.simplify().simplify()
     qmc_formula_simplified = qmc_formula.simplify().simplify()
 
-    print(f"[red]Found {len(problems)} with a formula.[/red]")
+    print(f"[red]Found {len(problems)} problems with the formula.[/red]")
     print(f"Ones: {ones_formula}\n  Ones (simplified): [bold]{ones_formula_simplified}[/bold]")
     print(f"Dont' care: {dontcare_formula}\n  Dont' care (simplified): [bold]{dontcare_formula_simplified}[/bold]")
     print(f"QMC input:\n  ones: {ones}\n  dc: {dontcare}")
@@ -130,23 +129,7 @@ def check_qmc(n_bits: int, ones_formula, dontcare_formula):
     print()
 
 
-def check(n_bits, ones_str, dontcare_str):
-    ones_formula = make_random_fromula(n_bits=n_bits, max_depth=2)
-    dontcare_formula = make_random_fromula(n_bits=n_bits, max_depth=2)
-
-
 def main():
-    # qmc = QuineMcCluskey()
-    # # print(qmc.simplify_los(ones=[], dc=['00', '01', '10', '11']))
-    # # print(qmc.simplify_los(ones=['00', '01', '10', '11'], dc=[]))
-    # print(qmc.simplify_los(ones=['00', '01', '10'], dc=['11'], num_bits=2))
-    # print(qmc.simplify_los(ones=[], dc=['11'], num_bits=2))
-
-    # print(qmc.simplify_los(ones=['00', '01', '10'], dc=[], num_bits=2))
-    # print("FALSE", qmc.simplify_los(ones=[], dc=[], num_bits=2))
-    # print("TRUE", qmc.simplify_los(ones=['00', '01', '10', '11'], dc=[], num_bits=2))
-    # return
-
     if len(sys.argv) == 4:
         n_bits = int(sys.argv[1])
         ones_formula = algebra.parse(sys.argv[2])
@@ -156,10 +139,8 @@ def main():
             sys.exit(1)
         return
     
-    
-    
     n_bits = 5
-    infinity = 9999999999999999999999
+    infinity = 2**50
     error_counter = 0 
     time_begin = time.time()
     with Progress(
@@ -184,4 +165,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass

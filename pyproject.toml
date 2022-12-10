@@ -1,5 +1,12 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm"]
+requires = [
+    "setuptools>=45",
+    "setuptools_scm[toml]>=6.2",
+    "wheel",
+    "ninja",
+    "cmake>=3.24",
+    "pybind11-stubgen",
+]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -28,11 +35,11 @@ classifiers = [
 ]
 dynamic = ["version"]
 
+[project.optional-dependencies]
+test = ["pytest>=6.0", "flake8", "black", "pylint"]
+
 [project.urls]
 "Homepage" = "https://github.com/tomas789/quine-mccluskey-tomas789"
-
-[tool.setuptools.dynamic]
-version = {attr = "quine_mccluskey_tomas789._version.__version__"}
 
 [tool.setuptools_scm]
 write_to = "quine_mccluskey_tomas789/_version.py"
@@ -61,3 +68,32 @@ max-line-length = 127
 [tool.black]
 line-length = 127
 target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
+
+[tool.isort]
+profile = "black"
+
+[tool.cibuildwheel]
+# test-command = "cd {project}/tests && pytest ."
+# test-extras = ["test"]
+# test-skip = ["*universal2:arm64"]
+# Setuptools bug causes collision between pypy and cpython artifacts
+build-verbosity = 3
+
+
+build = "cp3*"
+
+
+[tool.cibuildwheel.linux]
+archs = ["auto", "aarch64"]
+before-build = "rm -rf {project}/build"
+
+[tool.cibuildwheel.macos]
+before-build = "rm -rf {project}/build"
+
+# Use delvewheel on windows
+[tool.cibuildwheel.windows]
+before-build = [
+    "pip install delvewheel",
+    "if exist build rmdir /s /q build",
+]
+repair-wheel-command = "delvewheel repair -w {dest_dir} {wheel}"
