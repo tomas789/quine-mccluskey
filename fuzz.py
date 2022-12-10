@@ -1,7 +1,6 @@
 import random
 import time
-from typing import List, Optional, Set, Tuple
-from rich.progress import track
+from typing import Optional, Set
 import boolean
 import sys
 from rich.progress import Progress, SpinnerColumn, TextColumn, TimeElapsedColumn

@@ -1,12 +1,8 @@
-from __future__ import print_function, annotations
-
-import itertools
-import math
-from typing import Dict, Iterable, List, Optional, Set, Tuple
+from __future__ import annotations, print_function
 
 import sys
+from typing import Iterable, List, Optional, Set, Tuple
 
-sys.path.append("/Users/tomaskrejci/Developer/quine-mccluskey/build")
 import _qmc
 
 
