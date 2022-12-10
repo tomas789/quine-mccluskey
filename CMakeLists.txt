@@ -3,8 +3,7 @@ cmake_minimum_required(VERSION 3.23)
 project(_quine_mccluskey_tomas789)
 
 find_package(Python COMPONENTS Interpreter Development)
-
-add_subdirectory(pybind11)
+find_package(pybind11 REQUIRED)
 
 # Python method:
 pybind11_add_module(_quine_mccluskey_tomas789 src_cpp/qmc.cpp)
