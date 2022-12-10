@@ -134,6 +134,7 @@ setup(
     cmdclass={"build_ext": CMakeBuild},
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
+    extras_require={"test": ["pytest>=6.0"]},
     zip_safe=False,
     python_requires=">=3.7",
 )
