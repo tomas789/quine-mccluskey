@@ -6,6 +6,7 @@ import os
 import re
 import subprocess
 import sys
+import platform
 from pathlib import Path
 import pybind11_stubgen
 import shutil
@@ -54,9 +55,16 @@ class CMakeBuild(build_ext):
         # from Python.
         cmake_args = [
             f"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY={extdir}{os.sep}",
-            f"-DPYTHON_EXECUTABLE={sys.executable}",
             f"-DCMAKE_BUILD_TYPE={cfg}",  # not used on MSVC, but no harm
         ]
+        if platform.system() == "Linux":
+            cmake_args += [
+                f"-DPython_EXECUTABLE={sys.executable}",
+            ]
+        else:
+            cmake_args += [
+                f"-DPYTHON_EXECUTABLE={sys.executable}",
+            ]
         build_args = []
         # Adding CMake arguments set as environment variable
         # (needed e.g. to build for ARM OSx on conda-forge)
