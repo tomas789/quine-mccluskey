@@ -2,8 +2,16 @@ cmake_minimum_required(VERSION 3.23)
 
 project(_quine_mccluskey_tomas789)
 
+include(FetchContent)
+
+FetchContent_Declare(
+  pybind11
+  URL https://codeload.github.com/pybind/pybind11/tar.gz/refs/tags/v2.10.1)
+FetchContent_Populate(pybind11)
+message(STATUS "pybind11 is available in " ${pybind11_SOURCE_DIR})
+
 find_package(Python COMPONENTS Interpreter Development)
-find_package(pybind11 REQUIRED)
+add_subdirectory(${pybind11_SOURCE_DIR})
 
 # Python method:
 pybind11_add_module(_quine_mccluskey_tomas789 src_cpp/qmc.cpp)
