@@ -5,14 +5,41 @@ requires = [
     "wheel",
     "ninja",
     "cmake>=3.12",
+    "pybind11",
 ]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "quine_mccluskey_tomas789"
-# version = "0.0.1"  # Remove any existing version parameter.
+description = "An implementation of the Quine-McCluskey algorithm"
+requires-python = ">=3.7"
+keywords = ["Quine McCluskey", "XOR"]
+license = {text = "BSD"}
+readme = "README.md"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Topic :: Utilities",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Hardware",
+    "Typing :: Typed",
+]
 dynamic = ["version"]
 
+[project.optional-dependencies]
+test = ["pytest>=6.0", "flake8", "black", "pylint"]
+
+[project.urls]
+"Homepage" = "https://github.com/tomas789/quine-mccluskey-tomas789"
 
 [tool.setuptools_scm]
 write_to = "quine_mccluskey_tomas789/_version.py"

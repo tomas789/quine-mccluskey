@@ -39,6 +39,7 @@ def massert(name, cpp, py):
     print(f" C++: {value_cpp}")
     sys.exit(1)
 
+
 def get_prime_implicants(n_bits: int, use_xor: bool, terms: Set[str]) -> ResultWithProfile:
     """Simplify the set 'terms'.
 
@@ -54,8 +55,10 @@ def get_prime_implicants(n_bits: int, use_xor: bool, terms: Set[str]) -> ResultW
     generates all prime implicants, whether they are redundant or not.
     """
     r = _qmc.get_prime_implicants(n_bits, use_xor, terms)
-    
-    return ResultWithProfile(result=r.result, profile_cmp=r.profile_cmp, profile_xor=r.profile_xor, profile_xnor=r.profile_xnor)
+
+    return ResultWithProfile(
+        result=r.result, profile_cmp=r.profile_cmp, profile_xor=r.profile_xor, profile_xnor=r.profile_xnor
+    )
 
 
 def get_essential_implicants(n_bits: int, terms: Set[str], dc: Set[str]) -> Set[str]:
