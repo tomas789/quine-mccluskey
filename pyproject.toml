@@ -73,9 +73,9 @@ target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
 profile = "black"
 
 [tool.cibuildwheel]
-test-command = "cd {project}/tests && pytest ."
-test-extras = ["test"]
-test-skip = ["*universal2:arm64"]
+# test-command = "cd {project}/tests && pytest ."
+# test-extras = ["test"]
+# test-skip = ["*universal2:arm64"]
 # Setuptools bug causes collision between pypy and cpython artifacts
 
 
