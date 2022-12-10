@@ -546,7 +546,7 @@ ResultWithProfile getPrimeImplicants(int n_bits, bool use_xor, std::set<std::str
         pi.insert(std::begin(g), std::end(g));
     }
     
-    return ResultWithProfile{.result = pi, .profile_cmp = profile_cmp, .profile_xor = profile_xor, .profile_xnor = profile_xnor};
+    return ResultWithProfile{pi, profile_cmp, profile_xor, profile_xnor};
 }
 
 ResultWithProfile simplifyLosWithProfile(const std::vector<std::string>& ones, const std::vector<std::string>& dc, std::optional<int> num_bits, bool use_xor = false) {
@@ -554,7 +554,7 @@ ResultWithProfile simplifyLosWithProfile(const std::vector<std::string>& ones, c
     terms.insert(std::begin(ones), std::end(ones));
     terms.insert(std::begin(dc), std::end(dc));
     if (terms.empty()) {
-        return ResultWithProfile{.result = std::nullopt, .profile_cmp = 0, .profile_xor = 0, .profile_xnor = 0};
+        return ResultWithProfile{std::nullopt, 0, 0, 0};
     }
     std::size_t n_bits;
     if (num_bits.has_value()) {
@@ -571,7 +571,7 @@ ResultWithProfile simplifyLosWithProfile(const std::vector<std::string>& ones, c
             n_bits_max = std::max(n_bits_max, it->size());
         }
         if (n_bits_min != n_bits_max) {
-            return ResultWithProfile{.result = std::nullopt, .profile_cmp = 0, .profile_xor = 0, .profile_xnor = 0};
+            return ResultWithProfile{std::nullopt, 0, 0, 0};
         }
         n_bits = n_bits_min;
     }
@@ -583,10 +583,10 @@ ResultWithProfile simplifyLosWithProfile(const std::vector<std::string>& ones, c
     auto reduced_implicants = reduceImplicants(n_bits, essential_implicants, dc_set);
 
     return ResultWithProfile {
-        .result = reduced_implicants,
-        .profile_cmp = prime_implicants.profile_cmp,
-        .profile_xor = prime_implicants.profile_xor,
-        .profile_xnor = prime_implicants.profile_xnor,
+        reduced_implicants,
+        prime_implicants.profile_cmp,
+        prime_implicants.profile_xor,
+        prime_implicants.profile_xnor,
     };
 }
 
@@ -594,7 +594,7 @@ ResultWithProfile simplifyWithProfile(const std::vector<int>& ones, const std::v
     std::vector<int> terms(ones);
     terms.insert(std::end(terms), std::begin(dc), std::end(dc));
     if (terms.empty()) {
-        return ResultWithProfile{.result = std::nullopt, .profile_cmp = 0, .profile_xor = 0, .profile_xnor = 0};
+        return ResultWithProfile{std::nullopt, 0, 0, 0};
     }
 
     int n_bits;
