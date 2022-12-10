@@ -77,6 +77,7 @@ profile = "black"
 # test-extras = ["test"]
 # test-skip = ["*universal2:arm64"]
 # Setuptools bug causes collision between pypy and cpython artifacts
+build-verbosity = 1
 
 
 skip = "*-win32 *-musllinux_x86_64 *i686*"
