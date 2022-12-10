@@ -80,7 +80,6 @@ profile = "black"
 build-verbosity = 3
 
 
-skip = "*-win32 *-musllinux_x86_64 *i686*"
 build = "cp3*"
 
 
