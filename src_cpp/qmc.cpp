@@ -625,7 +625,7 @@ std::optional<std::set<std::string>> simplifyLos(const std::vector<std::string>&
     return simplifyLosWithProfile(ones, dc, num_bits, use_xor).result;
 }
 
-PYBIND11_MODULE(_qmc, m) {
+PYBIND11_MODULE(_quine_mccluskey_tomas789, m) {
     m.doc() = "quine_mccluskey_tomas789 C++ implementation"; // optional module docstring
 
     py::class_<ResultWithProfile>(m, "R")

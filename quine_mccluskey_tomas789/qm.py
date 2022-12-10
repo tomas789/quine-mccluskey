@@ -3,7 +3,7 @@ from __future__ import annotations, print_function
 import sys
 from typing import Iterable, List, Optional, Set, Tuple
 
-import _qmc
+import _quine_mccluskey_tomas789 as _qmc
 
 
 class ResultWithProfile:
