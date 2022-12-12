@@ -6,21 +6,6 @@ from typing import Iterable, List, Optional, Set, Tuple
 import quine_mccluskey_tomas789._quine_mccluskey_tomas789 as _qmc
 
 
-class ResultWithProfile:
-    """A wrapper around minimization results with profiling stats."""
-
-    none: ResultWithProfile
-
-    def __init__(self, result: Optional[Set[str]], profile_cmp: int, profile_xor: int, profile_xnor: int):
-        self.result = result
-        self.profile_cmp = profile_cmp
-        self.profile_xor = profile_xor
-        self.profile_xnor = profile_xnor
-
-
-ResultWithProfile.none = ResultWithProfile(result=None, profile_cmp=0, profile_xor=0, profile_xnor=0)
-
-
 def reduce_simple_xor_terms(t1: str, t2: str) -> Optional[str]:
     return _qmc.reduce_simple_xor_terms(t1, t2)
 
