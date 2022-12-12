@@ -29,17 +29,6 @@ def reduce_simple_xnor_terms(t1: str, t2: str) -> Optional[str]:
     return _qmc.reduce_simple_xnor_terms(t1, t2)
 
 
-def massert(name, cpp, py):
-    value_py = py[name]
-    value_cpp = getattr(cpp, name)
-    if value_py == value_cpp:
-        return
-    print(f"ASSERT FAILED {name}: ")
-    print(f"  PY: {value_py}")
-    print(f" C++: {value_cpp}")
-    sys.exit(1)
-
-
 def get_prime_implicants(n_bits: int, use_xor: bool, terms: Set[str]) -> ResultWithProfile:
     """Simplify the set 'terms'.
 
